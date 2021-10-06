@@ -1,0 +1,4 @@
+cfscrape
+beautifulsoup4
+argparse
+progress

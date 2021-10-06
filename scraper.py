@@ -13,7 +13,7 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 """
 
-import cloudscraper
+import cfscrape
 from bs4 import BeautifulSoup
 import time
 import requests
@@ -63,7 +63,8 @@ inv_item_type_choices = {v: k for k, v in item_type_choices.items()}
 languages = ["en", "fr", "de", "es", "pt", "it"]
 
 headers = {"Authorization": f"Bearer {API_KEY}"}
-scraper = cloudscraper.create_scraper()
+session = requests.Session()
+scraper = cfscrape.create_scraper(sess=session)
 
 dofus_base_url = "https://www.dofus.com"
 
@@ -96,7 +97,7 @@ def addLangArrIfNotExist(obj, lang):
 
 
 def scrape_resource(item_ref):
-    item_html = scraper.get(dofus_base_url + item_ref).text
+    item_html = scraper.get(dofus_base_url + item_ref).content
     item_soup = BeautifulSoup(item_html, 'html.parser')
     # get all langs
     lang_links = item_soup.find("div", {"class": "ak-box-lang"}).find_all("a")
@@ -159,7 +160,7 @@ def scrape_resource(item_ref):
 
 
 def scrape_pet(item_ref):
-    item_html = scraper.get(dofus_base_url + item_ref).text
+    item_html = scraper.get(dofus_base_url + item_ref).content
     item_soup = BeautifulSoup(item_html, 'html.parser')
     # get all langs
     lang_links = item_soup.find("div", {"class": "ak-box-lang"}).find_all("a")
@@ -275,7 +276,7 @@ def scrape_pet(item_ref):
 
 
 def scrape_set(item_ref):
-    item_html = scraper.get(dofus_base_url + item_ref).text
+    item_html = scraper.get(dofus_base_url + item_ref).content
     item_soup = BeautifulSoup(item_html, 'html.parser')
     # get all langs
     lang_links = item_soup.find("div", {"class": "ak-box-lang"}).find_all("a")
@@ -363,7 +364,7 @@ def scrape_set(item_ref):
 
 
 def scrape_consumable(item_ref):
-    item_html = scraper.get(dofus_base_url + item_ref).text
+    item_html = scraper.get(dofus_base_url + item_ref).content
     item_soup = BeautifulSoup(item_html, 'html.parser')
     # get all langs
     lang_links = item_soup.find("div", {"class": "ak-box-lang"}).find_all("a")
@@ -447,7 +448,7 @@ def scrape_consumable(item_ref):
 
 
 def scrape_weapon(item_ref):
-    item_html = scraper.get(dofus_base_url + item_ref).text
+    item_html = scraper.get(dofus_base_url + item_ref).content
     item_soup = BeautifulSoup(item_html, 'html.parser')
     # get all langs
     lang_links = item_soup.find("div", {"class": "ak-box-lang"}).find_all("a")
@@ -574,7 +575,7 @@ def scrape_weapon(item_ref):
 
 
 def scrape_equipment(item_ref):
-    item_html = scraper.get(dofus_base_url + item_ref).text
+    item_html = scraper.get(dofus_base_url + item_ref).content
     item_soup = BeautifulSoup(item_html, 'html.parser')
     # get all langs
     lang_links = item_soup.find("div", {"class": "ak-box-lang"}).find_all("a")
