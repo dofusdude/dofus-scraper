@@ -2,7 +2,7 @@
 Cloudscraper based encyclopedia scraping to JSON and API creation client with Python.
 
 ## Usage
-Install dependencies (requires Python 3 with pip) `./setup.sh`
+Install dependencies (Python 3) `pip install -r requirements.txt`
 
 The script should be used like a CLI.
 See the usage with `python3 scraper.py --help`.
